@@ -1,0 +1,35 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "shomarov/docker-complex-practice-client",
+      "hostname": "client",
+      "essential": "false"
+    },
+    {
+      "name": "server",
+      "image": "shomarov/docker-complex-practice-server",
+      "hostname": "api",
+      "essential": "false"
+    },
+    {
+      "name": "worker",
+      "image": "shomarov/docker-complex-practice-worker",
+      "hostname": "worker",
+      "essential": "false"
+    },
+    {
+      "name": "nginx",
+      "image": "shomarov/docker-complex-practice-nginx",
+      "essential": "true",
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}

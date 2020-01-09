@@ -14,7 +14,20 @@ after_success:
   - docker build -t shomarov/docker-complex-practice-server ./server
   - docker build -t shomarov/docker-complex-practice-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push shomarov/docker-complex-practice-client 
+  - docker push shomarov/docker-complex-practice-client
   - docker push shomarov/docker-complex-practice-nginx
   - docker push shomarov/docker-complex-practice-server
   - docker push shomarov/docker-complex-practice-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-central-1
+  app: docker-complex-practice
+  env: DockerComplexPractice-env
+  bucket_name: elasticbeanstalk-eu-central-1-801956187188
+  bucket_path: docker-complex-practice
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
