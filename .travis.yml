@@ -3,29 +3,29 @@ services:
   - docker
 
 before_install:
-  - docker build -t shomarov/docker-complex-practice-test -f ./client/Dockerfile.dev ./client
+  - docker build -t shomarov/fibonacci-calculator-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true shomarov/docker-complex-practice-test npm run test
+  - docker run -e CI=true shomarov/fibonacci-calculator-test npm run test
 
 after_success:
-  - docker build -t shomarov/docker-complex-practice-client ./client
-  - docker build -t shomarov/docker-complex-practice-nginx ./nginx
-  - docker build -t shomarov/docker-complex-practice-server ./server
-  - docker build -t shomarov/docker-complex-practice-worker ./worker
+  - docker build -t shomarov/fibonacci-calculator-client ./client
+  - docker build -t shomarov/fibonacci-calculator-nginx ./nginx
+  - docker build -t shomarov/fibonacci-calculator-server ./server
+  - docker build -t shomarov/fibonacci-calculator-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push shomarov/docker-complex-practice-client
-  - docker push shomarov/docker-complex-practice-nginx
-  - docker push shomarov/docker-complex-practice-server
-  - docker push shomarov/docker-complex-practice-worker
+  - docker push shomarov/fibonacci-calculator-client
+  - docker push shomarov/fibonacci-calculator-nginx
+  - docker push shomarov/fibonacci-calculator-server
+  - docker push shomarov/fibonacci-calculator-worker
 
 deploy:
   provider: elasticbeanstalk
   region: eu-central-1
-  app: docker-complex-practice
+  app: fibonacci-calculator
   env: DockerComplexPractice-env
   bucket_name: elasticbeanstalk-eu-central-1-801956187188
-  bucket_path: docker-complex-practice
+  bucket_path: fibonacci-calculator
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
