@@ -23,7 +23,7 @@ deploy:
   provider: elasticbeanstalk
   region: eu-central-1
   app: fibonacci-calculator
-  env: DockerComplexPractice-env
+  env: FibonacciCalculator-env
   bucket_name: elasticbeanstalk-eu-central-1-801956187188
   bucket_path: fibonacci-calculator
   on:
