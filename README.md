@@ -18,6 +18,8 @@ I have created an over the top complex structure for a very simple application. 
 
 Application: Fibonacci calculator  
 Link: http://fibonaccicalculator-env.4nweb568pu.eu-central-1.elasticbeanstalk.com/
+Project repository: https://github.com/shomarov-edu/fibonacci-calcucator
+Docker images: https://hub.docker.com/u/shomarov
 
 ![Development diagram](./development.png)
 ![Production diagram](./production.png)
